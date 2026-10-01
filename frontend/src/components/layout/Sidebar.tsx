@@ -21,7 +21,7 @@ const navItems = [
   { label: 'Incident Log', icon: AlertTriangle, href: '/incidents' },
   { label: 'Director View', icon: BarChart3, href: '/director' },
   { label: 'Technician View', icon: Wrench, href: '/technician' },
-  { label: 'About / System', icon: Layers, href: '/about' },
+  { label: 'About', icon: Layers, href: '/about' },
   { label: 'Settings', icon: Settings, href: '/settings' },
 ];
 
