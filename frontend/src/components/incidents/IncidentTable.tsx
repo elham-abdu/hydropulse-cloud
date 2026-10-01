@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Filter, Search, ArrowUpDown, ChevronRight } from 'lucide-react';
+import { Filter, Search, ArrowUpDown, ChevronRight, Download } from 'lucide-react';
 import { mockIncidents, type Incident } from '@/data/mock-pipes';
 import { getSeverityColor, formatDate, formatLeakProbability } from '@/lib/utils';
+import { useToast } from '@/components/ui/ToastProvider';
 
 export default function IncidentTable() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +12,8 @@ export default function IncidentTable() {
   const [severityFilter, setSeverityFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<keyof Incident>('created_at');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+  
+  const { addToast } = useToast();
 
   // Filter and sort the mock incidents
   const filteredData = useMemo(() => {
@@ -113,6 +116,13 @@ export default function IncidentTable() {
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
+          
+          <button 
+            onClick={() => addToast({ type: 'success', title: 'Export Complete', message: 'Downloading incidents-export.csv' })}
+            className="hidden sm:flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          >
+            <Download className="w-4 h-4" /> Export CSV
+          </button>
         </div>
       </div>
 

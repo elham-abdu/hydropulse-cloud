@@ -1,6 +1,7 @@
 import AppShell from '@/components/layout/AppShell';
 import ExecutiveKPIs from '@/components/director/ExecutiveKPIs';
 import SavingsChart from '@/components/director/SavingsChart';
+import AIRecommendations from '@/components/director/AIRecommendations';
 
 export default function DirectorPage() {
   return (
@@ -12,7 +13,15 @@ export default function DirectorPage() {
         </div>
         
         <ExecutiveKPIs />
-        <SavingsChart />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <SavingsChart />
+          </div>
+          <div className="lg:col-span-1">
+            <AIRecommendations />
+          </div>
+        </div>
       </div>
     </AppShell>
   );
