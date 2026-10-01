@@ -2,26 +2,58 @@
 
 import { useState } from 'react';
 import { Zap, Bug, WifiOff, RotateCcw, ChevronUp, ChevronDown } from 'lucide-react';
+import { useToast } from '@/components/ui/ToastProvider';
 
 export default function DemoControlPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const [leakTriggered, setLeakTriggered] = useState(false);
   const [mlOutage, setMlOutage] = useState(false);
   const [sensorOffline, setSensorOffline] = useState(false);
+  
+  const { addToast } = useToast();
 
   const handleTriggerLeak = () => {
     setLeakTriggered(true);
+    addToast({
+      type: 'error',
+      title: 'Synthetic Leak Triggered',
+      message: 'Simulated 18 PSI pressure drop injected into PIPE-003.',
+      duration: 5000,
+    });
     // TODO: When backend is ready, POST to /api/demo/trigger-leak
-    setTimeout(() => setLeakTriggered(false), 5000);
+    setTimeout(() => {
+      setLeakTriggered(false);
+      addToast({
+        type: 'success',
+        title: 'Leak Simulation Ended',
+        message: 'System returning to normal heuristic baseline.',
+      });
+    }, 15000);
   };
 
   const handleMLOutage = () => {
-    setMlOutage(!mlOutage);
+    const newState = !mlOutage;
+    setMlOutage(newState);
+    addToast({
+      type: newState ? 'warning' : 'success',
+      title: newState ? 'ModelArts Offline' : 'ModelArts Online',
+      message: newState 
+        ? 'ML pipeline disconnected. Falling back to simple heuristic rules.'
+        : 'ML pipeline restored. High-accuracy predictions active.',
+    });
     // TODO: When backend is ready, POST to /api/demo/toggle-ml
   };
 
   const handleSensorOffline = () => {
-    setSensorOffline(!sensorOffline);
+    const newState = !sensorOffline;
+    setSensorOffline(newState);
+    addToast({
+      type: newState ? 'warning' : 'info',
+      title: newState ? 'Sensor Disconnected' : 'Sensor Reconnected',
+      message: newState
+        ? 'Node SNS-012 (Lideta) is now offline.'
+        : 'Node SNS-012 (Lideta) is online and transmitting telemetry.',
+    });
     // TODO: When backend is ready, POST to /api/demo/toggle-sensor
   };
 
@@ -29,6 +61,11 @@ export default function DemoControlPanel() {
     setLeakTriggered(false);
     setMlOutage(false);
     setSensorOffline(false);
+    addToast({
+      type: 'info',
+      title: 'Demo Environment Reset',
+      message: 'All synthetic anomalies cleared.',
+    });
     // TODO: When backend is ready, POST to /api/demo/reset
   };
 

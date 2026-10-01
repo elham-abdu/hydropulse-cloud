@@ -1,7 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Bell, User } from 'lucide-react';
+import { User } from 'lucide-react';
+import NotificationDropdown from '@/components/ui/NotificationDropdown';
 
 const pageTitles: Record<string, string> = {
   '/': 'Network Map',
@@ -24,13 +25,8 @@ export default function TopNav() {
 
       {/* Right Actions */}
       <div className="flex items-center gap-4">
-        {/* Notification Bell */}
-        <button className="relative p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full">
-            3
-          </span>
-        </button>
+        {/* Notification Dropdown */}
+        <NotificationDropdown />
 
         {/* User Avatar */}
         <div className="flex items-center gap-2 pl-4 border-l border-slate-200">

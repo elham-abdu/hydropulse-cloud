@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 import DemoControlPanel from '@/components/demo/DemoControlPanel';
+import { ToastProvider } from '@/components/ui/ToastProvider';
 
 export default function RootLayout({
   children,
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        {children}
-        <DemoControlPanel />
+        <ToastProvider>
+          {children}
+          <DemoControlPanel />
+        </ToastProvider>
       </body>
     </html>
   );
