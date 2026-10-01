@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Droplets, Eye, EyeOff, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -122,13 +123,18 @@ export default function LoginPage() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-6 space-y-2">
-          <p className="text-xs text-slate-500">
-            Protected by Huawei Cloud Security • End-to-end encrypted
+        <div className="text-center mt-6 space-y-4">
+          <p className="text-sm text-sky-200">
+            Don&apos;t have an account? <Link href="/register" className="text-white font-bold hover:underline">Request access</Link>
           </p>
-          <p className="text-xs text-slate-600">
-            © 2026 HydroPulse Cloud — Addis Ababa Water & Sewerage Authority
-          </p>
+          <div className="space-y-1 pt-2 border-t border-white/10">
+            <p className="text-xs text-slate-500">
+              Protected by Huawei Cloud Security • End-to-end encrypted
+            </p>
+            <p className="text-xs text-slate-600">
+              © 2026 HydroPulse Cloud — Addis Ababa Water & Sewerage Authority
+            </p>
+          </div>
         </div>
       </div>
     </div>
