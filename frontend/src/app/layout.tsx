@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: 'Smart Water Leak Detection & Management Platform',
 };
 
+import DemoControlPanel from '@/components/demo/DemoControlPanel';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,6 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         {children}
+        <DemoControlPanel />
       </body>
     </html>
   );
