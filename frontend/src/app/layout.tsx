@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 import DemoControlPanel from '@/components/demo/DemoControlPanel';
+import HydroBot from '@/components/ui/HydroBot';
 import { ToastProvider } from '@/components/ui/ToastProvider';
 
 export default function RootLayout({
@@ -20,6 +21,7 @@ export default function RootLayout({
         <ToastProvider>
           {children}
           <DemoControlPanel />
+          <HydroBot />
         </ToastProvider>
       </body>
     </html>

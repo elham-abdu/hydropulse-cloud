@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Layers,
   Cpu,
+  Activity,
 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -23,6 +24,7 @@ const navItems = [
   { label: 'Director View', icon: BarChart3, href: '/director' },
   { label: 'Technician View', icon: Wrench, href: '/technician' },
   { label: 'IoT Sensors', icon: Cpu, href: '/iot' },
+  { label: 'SCADA View', icon: Activity, href: '/scada' },
   { label: 'About', icon: Layers, href: '/about' },
   { label: 'Settings', icon: Settings, href: '/settings' },
 ];
